@@ -70,6 +70,14 @@ class ProductController extends Controller
     public function update(Request $request, Product $product)
     {
         //
+        $dataId = $galery->find($galery->id);
+        $data = $request->all();
+        if($request->image){
+            Storage::delete('public/'.$dataId->image);
+            $data['image'] = $request->file('image')->store('assets/galery', 'public');
+        }
+        $dataId->update($data);
+        return redirect()->route('galery.index');
     }
 
     /**
