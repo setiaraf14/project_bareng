@@ -22,6 +22,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('/product', 'productController')->middleware('auth');
+// Route::get('/product/{product}', 'ProductController@show')->name('product.show')->middleware('auth')->middleware('can:view');
 // Route::get('/product/{product}', 'productController@show')->name('product.show')->middleware('auth')->middleware('can:view,product');
 
 // Route::resource('product', 'UserProductController');
