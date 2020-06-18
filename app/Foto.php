@@ -11,6 +11,6 @@ class Foto extends Model
     protected $primaryKey = 'id_foto';
 
     public function product(){
-        return $this->belongsTo(Karyawan::class, 'karyawan_id', 'id_foto'); 
+        return $this->belongsTo(Product::class, 'product_id', 'id_foto'); 
     }
 }

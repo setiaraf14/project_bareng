@@ -11,6 +11,6 @@ class Product extends Model
     protected $primaryKey = 'product_id';
 
     public function foto(){
-        return $this->hasOne(Foto::class, 'product_id', 'id_foto'); 
+        return $this->hasOne(Foto::class, 'product_id', 'product_id'); 
     }
 }
