@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Storage;
 use App\Product;
 use App\Foto;
 use Illuminate\Http\Request;
@@ -14,8 +15,9 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        //
+    {   
+        $product = Product::all();
+        return view('index', compact('product'));
     }
 
     /**
@@ -57,7 +59,7 @@ class ProductController extends Controller
         $foto->foto_1 = $img_validator['foto_1'];
         $foto->foto_2 = $img_validator['foto_2'];
         $product->foto()->save($foto);
-        return 'ok';
+        return redirect()->route('product.index');;
     }
 
     /**
@@ -80,6 +82,8 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         //
+
+        return view('edit', compact('product'));
     }
 
     /**
@@ -92,11 +96,32 @@ class ProductController extends Controller
     public function update(Request $request, Product $product)
     {
         //
-        $dataId = $galery->find($galery->id);
+        $validator = $request->validate([
+            'harga' => 'required|integer',
+            'judul_product' => 'required|min:10|max:255',
+            'berat' => 'required|integer',
+            'kondisi' => 'required|min:4|max:255',
+            'asuransi' => 'required'
+        ]);
+        $img_validator = $request->validate([
+            'foto_1' => 'file|image|max:1024',
+            'foto_2' => 'file|image|max:1024'
+        ]);
+        
+        $foto = new Foto;
+        $foto->$product->foto_1;
+        $foto->$product->foto_2;
+        $product->update($validator, $img_validator);
+        $dataId = $product->find($product->product_id);
         $data = $request->all();
-        if($request->image){
+        
+        if($request->foto_1){
             Storage::delete('public/'.$dataId->image);
-            $data['image'] = $request->file('image')->store('assets/galery', 'public');
+            $data['foto_1'] = $request->file('foto_1')->store('assets/gambar', 'public');
+        }
+        if($request->foto_2){
+            Storage::delete('public/'.$dataId->image);
+            $data['foto_2'] = $request->file('foto_2')->store('assets/gambar', 'public');
         }
         $dataId->update($data);
         return redirect()->route('galery.index');

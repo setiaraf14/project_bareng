@@ -8,8 +8,9 @@
         <div class="card">
             <h5 class="card-header">Update Data</h5>
             <div class="card-body">
-                <form action="{{ route('product.store', ['product' => $product->product_id]) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('product.update', ['product' => $product->product_id]) }}" method="POST" enctype="multipart/form-data">
                     @method('PATCH')
+                    @csrf
 
                     <div class="form-row">
                       <div class="col">
@@ -53,7 +54,17 @@
                       </select>
                     </div>
 
-                    
+                    <div class="form-group">
+                      <img src="{{ Storage::url($product->foto->foto_1) }}" alt="" style="width: 150px;">
+                      <input type="file" class="form-control-file" id="image" name="image" >
+                    </div>
+
+                    <div class="form-group">
+                      <img src="{{ Storage::url($product->foto->foto_2) }}" alt="" style="width: 150px;">
+                      <input type="file" class="form-control-file" id="image" name="image" >
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Primary</button>
 
                 </form>
             </div>
