@@ -18,6 +18,89 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <style>
+        .navbar{
+            background-color: #191919;
+        }
+
+        .navbar .container .nav-item{
+            color: white;
+            font-size: 20px;
+            letter-spacing: 3px;
+            font-family:  "Libre Franklin", Arial, sans-serif;
+        }
+
+        .navbar .container .nav-item:hover{
+            color:  #e32879;
+        }
+
+        .container .navbar-brand{
+            color:  #e32879;
+            font-size: 20px;
+            letter-spacing: 4px;
+            font-family:  "Libre Franklin", Arial, sans-serif;
+        }
+
+        /* content */
+
+        .hero-section{
+            height: 800px;
+            background-image: url(img/hero-bg.jpg);
+            display: flex;
+            align-items: center;
+            -webkit-box-align: center;
+        }
+
+        .set-bg{ 
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: top center;
+        }
+
+        .hs-text span {
+            color: #e32879;
+            font-size: 16px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .hs-text h2 {
+            color: #ffffff;
+            font-size: 60px;
+            font-weight: 700;
+            margin-top: 30px;
+            margin-bottom: 10px;
+        }
+
+        .hs-text p {
+            color: #ffffff;
+            margin-bottom: 45px;
+        }
+
+        p {
+            font-size: 16px;
+            font-family: "Libre Franklin", sans-serif;
+            color: #b3b3b3;
+            font-weight: 400;
+            line-height: 26px;
+            margin: 0 0 15px 0;
+        }
+
+        .primary-btn {
+            font-size: 16px;
+            color: #ffffff;
+            background: #e32879;
+            display: inline-block;
+            font-weight: 700;
+            padding: 12px 30px 10px;
+        }
+
+        .hs-text a:hover {
+            text-decoration: none;
+            color: rgb(0, 14, 94);
+        }
+
+    </style>
 </head>
 <body>
     <div id="app">
@@ -33,7 +116,13 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                        <div class="container d-flex justify-content-end">
+                            <a class="navbar-brand" href="{{ route('product.index') }}">Home</a>
+                            <a class="nav-item nav-link" href="{{ route('product.index') }}">About Us</a>
+                            <a class="nav-item nav-link" href="{{ route('product.index') }}">Blog</a>
+                            <a class="nav-item nav-link" href="{{ route('product.index') }}">Gallery</a>
+                            <a class="nav-item nav-link" href="{{ route('product.index') }}">Contact</a>
+                        </div>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
