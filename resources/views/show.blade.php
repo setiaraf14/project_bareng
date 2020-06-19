@@ -44,6 +44,10 @@
                         <td>{{ $product->berat }}</td>
                         <td>{{ $product->kondisi }}</td>
                         <td>{{ $product->asuransi }}</td>
+                        <td>
+                            {{ Storage::url($product->foto->foto_1) }}
+                            {{ Storage::url($product->foto->foto_2) }}    
+                        </td>
                     </tr>
                 </tbody>
             </table>
