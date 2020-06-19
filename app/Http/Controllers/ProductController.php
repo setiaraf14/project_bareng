@@ -96,35 +96,21 @@ class ProductController extends Controller
     public function update(Request $request, Product $product)
     {
         //
-        $validator = $request->validate([
-            'harga' => 'required|integer',
-            'judul_product' => 'required|min:10|max:255',
-            'berat' => 'required|integer',
-            'kondisi' => 'required|min:4|max:255',
-            'asuransi' => 'required'
-        ]);
-        $img_validator = $request->validate([
-            'foto_1' => 'file|image|max:1024',
-            'foto_2' => 'file|image|max:1024'
-        ]);
         
-        $foto = new Foto;
-        $foto->$product->foto_1;
-        $foto->$product->foto_2;
-        $product->update($validator, $img_validator);
         $dataId = $product->find($product->product_id);
         $data = $request->all();
-        
-        if($request->foto_1){
-            Storage::delete('public/'.$dataId->image);
+        $foto = new Foto;
+        if($request->$foto->foto_1){
+            Storage::delete('public/'.$dataId->foto->foto_1);
             $data['foto_1'] = $request->file('foto_1')->store('assets/gambar', 'public');
         }
-        if($request->foto_2){
-            Storage::delete('public/'.$dataId->image);
+        if($request->$foto->foto_2){
+            Storage::delete('public/'.$dataId->foto->foto_2);
             $data['foto_2'] = $request->file('foto_2')->store('assets/gambar', 'public');
         }
-        $dataId->update($data);
-        return redirect()->route('galery.index');
+
+        $dataId->update($data); 
+        return redirect()->route('product.index');
     }
 
     /**
